@@ -8,8 +8,7 @@
 <title>MAGICAT</title>
 
 <link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -18,21 +17,19 @@
 
 <header>
 
-<div class="logo">
-🐱 MAGICAT
-</div>
+<div class="logo">🐱 MAGICAT</div>
 
 <nav>
-<a href="#">Home</a>
 <a href="#about">About</a>
 <a href="#tokenomics">Tokenomics</a>
 <a href="#roadmap">Roadmap</a>
-<a href="#">FAQ</a>
 </nav>
 
-<button class="buy-btn">
-Buy MAGICAT
-</button>
+<div>
+<button class="buy-btn" data-i18n="buy"></button>
+<button onclick="goLogin()" data-i18n="login"></button>
+<button onclick="goRegister()" data-i18n="register"></button>
+</div>
 
 </header>
 
@@ -40,44 +37,18 @@ Buy MAGICAT
 
 <div class="moon"></div>
 
-<img src="assets/castle.png" class="castle">
-
-<div class="left">
-
 <img src="assets/cat.png" class="cat">
-
-</div>
 
 <div class="center">
 
-<h1>
-The Most Magical Cat
-On The Blockchain
-</h1>
+<h1 data-i18n="welcome"></h1>
 
 <p>
-MAGICAT adalah meme coin komunitas
-yang membawa keajaiban, hiburan,
-dan masa depan crypto.
+MAGICAT adalah meme coin komunitas dengan visi Web3 global.
 </p>
 
 <div class="hero-buttons">
-<button>Buy MAGICAT</button>
-<button class="outline">Join Community</button>
-</div>
-
-</div>
-
-<div class="right">
-
-<div class="swap-card">
-
-<h2>Buy MAGICAT</h2>
-
-<input type="number" placeholder="Masukkan BNB">
-
-<button>Connect Wallet</button>
-
+<button data-i18n="join"></button>
 </div>
 
 </div>
@@ -92,93 +63,43 @@ dan masa depan crypto.
 </div>
 
 <div class="stat-card">
-<h2 class="counter" data-target="12345">0</h2>
+<h2 class="counter" data-target="54321">0</h2>
 <span>Holders</span>
-</div>
-
-<div class="stat-card">
-<h2 class="counter" data-target="543210">0</h2>
-<span>Liquidity</span>
-</div>
-
-</section>
-
-<section id="about">
-
-<h2>About MAGICAT</h2>
-
-<p>
-Satu kucing. Satu komunitas.
-Keajaiban tanpa batas.
-</p>
-
-</section>
-
-<section id="tokenomics">
-
-<h2>Tokenomics</h2>
-
-<div class="token-grid">
-
-<div class="token-box">
-40% Liquidity
-</div>
-
-<div class="token-box">
-30% Marketing
-</div>
-
-<div class="token-box">
-15% Community
-</div>
-
-<div class="token-box">
-10% Team
-</div>
-
-<div class="token-box">
-5% Development
-</div>
-
-</div>
-
-</section>
-
-<section id="roadmap">
-
-<h2>Roadmap</h2>
-
-<div class="roadmap">
-
-<div class="phase active">
-Phase 1<br>
-Launch & Community
-</div>
-
-<div class="phase">
-Phase 2<br>
-Listing Exchange
-</div>
-
-<div class="phase">
-Phase 3<br>
-Game & Utility
-</div>
-
-<div class="phase">
-Phase 4<br>
-Global Expansion
-</div>
-
 </div>
 
 </section>
 
 <footer>
-
 MAGICAT © 2026
-
 </footer>
+
+<!-- 🔥 FIREBASE + AUTO LOGIN CHECK -->
+<script type="module">
+import { auth } from "./firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+import { applyLang } from "./lang.js";
+
+/* 🔐 AUTO LOGIN CHECK */
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    window.location.href = "dashboard.html";
+  }
+});
+
+/* 🌐 LANGUAGE APPLY */
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang();
+});
+
+/* 🔗 NAVIGATION */
+window.goLogin = function(){
+  window.location.href = "login.html";
+};
+
+window.goRegister = function(){
+  window.location.href = "register.html";
+};
+</script>
 
 <script src="script.js"></script>
 
