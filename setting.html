@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAGICAT Settings</title>
+
+<style>
+body{
+font-family:Poppins;
+background:#0b001a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:rgba(255,255,255,0.05);
+padding:30px;
+border-radius:15px;
+text-align:center;
+width:300px;
+box-shadow:0 0 20px #a100ff;
+}
+
+select, button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+}
+
+button{
+background:linear-gradient(45deg,#6d00ff,#c700ff);
+color:white;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2 data-i18n="settings">Settings</h2>
+
+<p>Pilih Bahasa / Choose Language</p>
+
+<select onchange="setLang(this.value)">
+  <option value="id">Indonesia</option>
+  <option value="en">English</option>
+  <option value="jp">Japan</option>
+  <option value="cn">China</option>
+  <option value="ar">Arabic</option>
+  <option value="ru">Russia</option>
+  <option value="br">Brazil</option>
+</select>
+
+</div>
+
+<script type="module">
+import { setLang, applyLang } from "./lang.js";
+
+window.setLang = setLang;
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang();
+});
+</script>
+
+</body>
+</html>
